@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,6 +42,7 @@ public class TopicController {
         return topicService.listarPublicacionesPageable(pageable);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     @GetMapping("/{id}")
     public ResponseEntity<Topic> getTopicById(@PathVariable Long id) {
         return topicService.getPublicacionPorId(id)
@@ -48,7 +50,7 @@ public class TopicController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_STAFF")
     @PutMapping("/{id}")
     public ResponseEntity<Topic> updateTopic(@PathVariable Long id, @RequestBody TopicDTO topicDetails) {
         Topic updatedTopic = topicService.actualizarPublicacion(id, topicDetails);

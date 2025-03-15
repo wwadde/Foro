@@ -21,11 +21,11 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, name = "usuario")
+    @Column(name = "usuario", unique = true)
     private String username;
     @Column(name = "contrasena")
     private String password;
-    @Column(name = "correo")
+    @Column(name = "correo", unique = true)
     private String email;
 
     @JsonIgnore

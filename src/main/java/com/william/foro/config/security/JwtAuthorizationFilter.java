@@ -14,7 +14,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.william.foro.config.Constants.HEADER_AUTHORIZATION;
 import static com.william.foro.config.Constants.TOKEN_BEARER_PREFIX;
@@ -47,8 +46,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 null,
                 authorities.stream()
                         .map(SimpleGrantedAuthority::new)
-                        .collect(Collectors.toList())
-        );
+                        .toList());
 
         auth.setDetails(userId);
 
@@ -57,9 +55,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     private boolean isJWTValid(HttpServletRequest request, HttpServletResponse res) {
         String authenticationHeader = request.getHeader(HEADER_AUTHORIZATION);
-        if (authenticationHeader == null || !authenticationHeader.startsWith(TOKEN_BEARER_PREFIX))
-            return false;
-        return true;
+        return authenticationHeader != null && authenticationHeader.startsWith(TOKEN_BEARER_PREFIX);
     }
 
     @Override

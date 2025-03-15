@@ -1,4 +1,4 @@
-package com.william.foro.config.swagger;
+package com.william.foro.config;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;

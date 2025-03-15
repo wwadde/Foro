@@ -20,7 +20,7 @@ public class JwtAuthenticationConfig {
     public String getJwToken(Usuario usuario){
 
         String token = Jwts.builder()
-                .id("CRUD_JWT")
+                .id("Foro William")
                 .subject(usuario.getUsername())
                 .claim("authorities",
                         usuario.getAuthorities().stream()

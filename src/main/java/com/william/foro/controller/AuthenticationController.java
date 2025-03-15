@@ -17,12 +17,15 @@ public class AuthenticationController {
 
     private final UsuarioService usuarioService;
 
+    @CrossOrigin("*")
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> autenticarUsuario(@RequestBody JwtRequest request) {
 
+        log.info("ENTRA EL REQUEST");
+
         log.info(request.getUsername());
         log.info(request.getPassword());
-        log.info(request.toString());
+
 
         String token = usuarioService.autenticarUsuario(request);
 

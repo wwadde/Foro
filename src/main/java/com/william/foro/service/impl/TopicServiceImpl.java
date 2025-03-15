@@ -26,7 +26,7 @@ public class TopicServiceImpl implements TopicService {
     @Override
     public Topic crearPublicacion(TopicDTO topic){
 
-        Long userId = UsuarioServiceImpl.getCurrentUserId();
+        Long userId = UsuarioServiceImpl.getCurrentUserById();
 
         Usuario usuario = usuarioRepository.findById(userId)
                 .orElseThrow(()-> new RuntimeException("Usuario not Found by id: " + userId));
@@ -47,7 +47,7 @@ public class TopicServiceImpl implements TopicService {
 
     @Override
     public List<Topic> listarPublicaciones(){
-        return topicRepository.findByUsuarioId(UsuarioServiceImpl.getCurrentUserId());
+        return topicRepository.findByUsuarioId(UsuarioServiceImpl.getCurrentUserById());
     }
 
     @Override

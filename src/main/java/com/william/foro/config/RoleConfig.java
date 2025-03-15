@@ -1,4 +1,4 @@
-package com.william.foro.config.roleconfig;
+package com.william.foro.config;
 
 import com.william.foro.model.entity.Privilege;
 import com.william.foro.model.entity.Role;
