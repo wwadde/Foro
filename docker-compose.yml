@@ -19,8 +19,8 @@ services:
         condition: service_healthy
     environment:
       - FORODB_URL=jdbc:postgresql://db:5432/Foro
-      - FORODB_USER=${FORODB_USER}
-      - FORODB_PASSWORD=${FORODB_PASSWORD}
+      - FORODB_USER=postgres
+      - FORODB_PASSWORD=admin
 
   db:
     image: postgres
@@ -29,8 +29,8 @@ services:
       - db-data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=Foro
-      - POSTGRES_USER=${FORODB_USER}
-      - POSTGRES_PASSWORD=${FORODB_PASSWORD}
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=admin
     expose:
       - 5432
     healthcheck:
